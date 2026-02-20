@@ -8,6 +8,9 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
 
     steps:
       - name: Checkout Repo
@@ -28,7 +31,12 @@ jobs:
         run: flutter build web 
 
       - name: Create Pull Request
-        run: gh pr create --base main --head dev --title "Auto-merge dev to main" --body "Automated PR"
+        run: |
+          if ! gh pr list --head dev --base main --json number --jq '.[0].number' | grep -q . ; then
+            gh pr create --base main --head dev --title "Auto-merge dev to main" --body "Automated PR"
+          else
+            echo "Pull request already exists."
+          fi
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
