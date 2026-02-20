@@ -3,7 +3,7 @@ name: Deploy Flutter Web to Appwrite
 on:
   push:
     branches:
-      - main
+      - dev
 
 jobs:
   build-and-deploy:
@@ -21,22 +21,14 @@ jobs:
       - name: Install Dependencies
         run: flutter pub get
 
+      - name: Run Test(s)
+        run: flutter test
+
       - name: Build Web
-        run: |
-          flutter build web \
-            --release \
-            --dart-define=BUILD_TIME="$(date)" \
-            --dart-define=APP_VERSION="${{ github.run_number }}"
+        run: flutter build web 
 
-      - name: Install Appwrite CLI
-        run: npm install -g appwrite-cli
+      - name: Create Pull Request
+        run: gh pr create --base main --head dev --title "Auto-merge dev to main" --body "Automated PR"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Deploy to Appwrite
-        run: |
-          appwrite login --endpoint ${{ secrets.APPWRITE_ENDPOINT }} \
-                         --project-id ${{ secrets.APPWRITE_PROJECT_ID }} \
-                         --key ${{ secrets.APPWRITE_API_KEY }}
-
-          appwrite hosting deploy create \
-            --site-id ${{ secrets.APPWRITE_SITE_ID }} \
-            --entrypoint build/web
