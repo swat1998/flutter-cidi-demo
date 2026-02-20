@@ -1,0 +1,23 @@
+import 'package:flutter_test/flutter_test.dart';
+import 'package:flutter_cicd_demo/main.dart';
+
+void main() {
+  TestWidgetsFlutterBinding.ensureInitialized();
+
+  testWidgets('BuildPulse renders title and version', (
+    WidgetTester tester,
+  ) async {
+    const testBuildTime = 'TestTime';
+    const testVersion = '1.0.0';
+
+    await tester.pumpWidget(
+      const MyApp(buildTime: testBuildTime, version: testVersion),
+    );
+
+    await tester.pumpAndSettle();
+
+    expect(find.text('🚀 BuildPulse'), findsOneWidget);
+    expect(find.text('Version: 1.0.0'), findsOneWidget);
+    expect(find.text('Built at: TestTime'), findsOneWidget);
+  });
+}

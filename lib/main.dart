@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 void main() {
   const buildTime = String.fromEnvironment(
     'BUILD_TIME',
-    defaultValue: 'Unknown',
+    defaultValue: 'TestTime',
   );
   const appVersion = String.fromEnvironment(
     'APP_VERSION',
