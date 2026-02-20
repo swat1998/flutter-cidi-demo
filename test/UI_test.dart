@@ -16,8 +16,8 @@ void main() {
 
     await tester.pumpAndSettle();
 
-    expect(find.text('🚀 BuildPulse'), findsOneWidget);
-    expect(find.text('Version: 1.0.0'), findsOneWidget);
-    expect(find.text('Built at: TestTime'), findsOneWidget);
+    expect(find.text('🚀 ResCon\'26'), findsOneWidget);
+    expect(find.text('Version: $testVersion'), findsOneWidget);
+    expect(find.text('Built at: $testBuildTime'), findsOneWidget);
   });
 }

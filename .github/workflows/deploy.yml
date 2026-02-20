@@ -3,11 +3,15 @@ name: Deploy Flutter Web to Appwrite
 on:
   push:
     branches:
-      - main
+      - dev
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    
+    permissions:
+      contents: write
+      pull-requests: write
 
     steps:
       - name: Checkout Repo
@@ -21,22 +25,23 @@ jobs:
       - name: Install Dependencies
         run: flutter pub get
 
+      - name: Run Test(s)
+        run: flutter test
+
       - name: Build Web
+        run: flutter build web 
+
+      - name: Manage Pull Request
         run: |
-          flutter build web \
-            --release \
-            --dart-define=BUILD_TIME="$(date)" \
-            --dart-define=APP_VERSION="${{ github.run_number }}"
-
-      - name: Install Appwrite CLI
-        run: npm install -g appwrite-cli
-
-      - name: Deploy to Appwrite
-        run: |
-          appwrite login --endpoint ${{ secrets.APPWRITE_ENDPOINT }} \
-                         --project-id ${{ secrets.APPWRITE_PROJECT_ID }} \
-                         --key ${{ secrets.APPWRITE_API_KEY }}
-
-          appwrite hosting deploy create \
-            --site-id ${{ secrets.APPWRITE_SITE_ID }} \
-            --entrypoint build/web
+          PR_URL=$(gh pr list --head dev --base main --json url --jq '.[0].url')
+          
+          if [ -z "$PR_URL" ]; then
+            echo "Creating new pull request..."
+            PR_URL=$(gh pr create --base main --head dev --title "Auto-merge dev to main" --body "Automated PR from GitHub Actions")
+          else
+            echo "Pull request already exists: $PR_URL"
+          fi
+          
+          gh pr merge "$PR_URL" --auto --merge
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
