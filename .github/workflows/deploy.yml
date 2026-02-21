@@ -41,6 +41,9 @@ jobs:
           else
             echo "Pull request already exists: $PR_URL"
           fi
+
+          echo "Waiting for PR to become mergeable..."
+          sleep 10
           
           gh pr merge "$PR_URL" --auto --merge
         env:
