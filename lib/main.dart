@@ -24,36 +24,42 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         backgroundColor: Colors.black,
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text(
-                '🚀 ResCon\'26',
-                style: TextStyle(fontSize: 40, color: Colors.white),
-              ),
-              const SizedBox(height: 20),
-              Text(
-                'Version: $version',
-                style: const TextStyle(color: Colors.greenAccent, fontSize: 20),
-              ),
-              const SizedBox(height: 10),
-              Text(
-                'Built at: $buildTime',
-                style: const TextStyle(color: Colors.white70),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8.0),
-                child: Text(
-                  'This is a surprise quiz question! Answer this question to win goodies',
-                  style: const TextStyle(color: Colors.white, fontSize: 20),
+        body: Padding(
+          padding: const EdgeInsets.all(18.0),
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text(
+                  '🚀 ResCon\'26',
+                  style: TextStyle(fontSize: 40, color: Colors.white),
                 ),
-              ),
-              Text(
-                'What is the CLI command I used for creating the PR in the last job?',
-                style: const TextStyle(color: Colors.cyan, fontSize: 18),
-              ),
-            ],
+                const SizedBox(height: 20),
+                Text(
+                  'Version: $version',
+                  style: const TextStyle(
+                    color: Colors.greenAccent,
+                    fontSize: 20,
+                  ),
+                ),
+                const SizedBox(height: 10),
+                Text(
+                  'Built at: $buildTime',
+                  style: const TextStyle(color: Colors.white70),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8.0),
+                  child: Text(
+                    'This is a surprise quiz question! Answer this question to win goodies',
+                    style: const TextStyle(color: Colors.white, fontSize: 20),
+                  ),
+                ),
+                Text(
+                  'What is the CLI command I used for creating the PR in the last job?',
+                  style: const TextStyle(color: Colors.cyan, fontSize: 18),
+                ),
+              ],
+            ),
           ),
         ),
       ),
