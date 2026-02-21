@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Text(
-                '🚀 ResCon\'27',
+                '🚀 ResCon\'26',
                 style: TextStyle(fontSize: 40, color: Colors.white),
               ),
               const SizedBox(height: 20),

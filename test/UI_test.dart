@@ -4,9 +4,7 @@ import 'package:flutter_cicd_demo/main.dart';
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  testWidgets('BuildPulse renders title and version', (
-    WidgetTester tester,
-  ) async {
+  testWidgets('RevCon App renders title, version', (WidgetTester tester) async {
     const testBuildTime = 'TestTime';
     const testVersion = '1.0.0';
 
