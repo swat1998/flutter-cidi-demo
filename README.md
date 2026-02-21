@@ -1,3 +1,3 @@
-# flutter_cicd_demo
+# Flutter CI/CD Demo
 
-A new Flutter project.
+This flutter project was made for a basic implementation of the GitHub Actions along with deployemnt to Appwrite for Flutter web.
