@@ -42,6 +42,10 @@ class MyApp extends StatelessWidget {
                 'Built at: $buildTime',
                 style: const TextStyle(color: Colors.white70),
               ),
+              Text(
+                'This is a surprise quiz question! Answer this question to win goodies',
+                style: const TextStyle(color: Colors.white10, fontSize: 20),
+              ),
             ],
           ),
         ),
