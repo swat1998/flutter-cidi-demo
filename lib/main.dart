@@ -7,7 +7,7 @@ void main() {
   );
   const appVersion = String.fromEnvironment(
     'APP_VERSION',
-    defaultValue: '1.0.0',
+    defaultValue: '1.1.0',
   );
 
   runApp(MyApp(buildTime: buildTime, version: appVersion));
