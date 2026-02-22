@@ -6,7 +6,7 @@ void main() {
 
   testWidgets('RevCon App renders title, version', (WidgetTester tester) async {
     const testBuildTime = 'TestTime';
-    const testVersion = '1.0.0';
+    const testVersion = '1.0.1';
 
     await tester.pumpWidget(
       const MyApp(buildTime: testBuildTime, version: testVersion),
@@ -15,7 +15,7 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.text('🚀 ResCon\'26'), findsOneWidget);
-    expect(find.text('Version: $testVersion'), findsOneWidget);
-    expect(find.text('Built at: $testBuildTime'), findsOneWidget);
+    expect(find.text('Version: 1.0.1'), findsOneWidget);
+    expect(find.text('Built at: TestTime'), findsOneWidget);
   });
 }
