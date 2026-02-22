@@ -7,7 +7,7 @@ void main() {
   );
   const appVersion = String.fromEnvironment(
     'APP_VERSION',
-    defaultValue: '1.1.0',
+    defaultValue: '1.0.0',
   );
 
   runApp(MyApp(buildTime: buildTime, version: appVersion));
@@ -55,7 +55,7 @@ class MyApp extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  'What is the CLI command I used for creating the PR in the last job?',
+                  'What is required for the test file to have as a suffix to run the flutter test?',
                   style: const TextStyle(color: Colors.cyan, fontSize: 18),
                 ),
               ],
